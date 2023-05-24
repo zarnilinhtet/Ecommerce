@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
     // Add category
     public function view_category()
     {
@@ -37,8 +36,6 @@ class AdminController extends Controller
         return view('admin.product', compact('category'));
     }
 
-
-
     // ADD Product
     public function add_product(Request $request)
     {
@@ -63,7 +60,7 @@ class AdminController extends Controller
 
         ]);
 
-        $product = new Product;
+        $product = new Product();
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -80,5 +77,65 @@ class AdminController extends Controller
         $product->save();
 
         return redirect()->back()->with('success_add_product', 'Adding Product is Successful');
+    }
+
+
+    // show product
+
+    public function show_product()
+    {
+        $show_product = Product::all();
+
+        return view('admin.show_product', compact('show_product'));
+    }
+
+    public function delete_product($id)
+    {
+        Product::find($id)->delete();
+
+        return redirect()->back()->with('success_delete_product', 'Delete Product is Successful!');
+    }
+
+    public function update_product($id)
+    {
+        $show = Product::find($id);
+        $category = Category::all();
+
+        return view('admin.update_product', compact('show', 'category'));
+    }
+    public function update_confirm_product(Request $request, $id)
+    {
+        request()->validate([
+
+            'image' => ['required'],
+
+        ], [
+            'title' => 'Title cannot be empty',
+            'description' => 'Description cannot be empty',
+            'price' => 'Price cannot be empty',
+            'quantity' => 'quantity cannot be empty',
+            'discount_price' => 'Discount Price cannot be empty',
+            'category' => 'Category Price cannot be empty',
+            'image' => 'Image Price cannot be empty',
+
+        ]);
+
+        $product = Product::find($id);
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->discount_price = $request->discount_price;
+        $product->category = $request->category;
+
+        // Upload Image
+        $image = $request->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('product', $imagename);
+        $product->image = $imagename;
+
+        $product->save();
+        return redirect()->back();
+
     }
 }

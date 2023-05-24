@@ -76,14 +76,6 @@
         </div>
         <!-- partial:partials/_navbar.html -->
     </div>
-
-
-
-
-
-
-
 </body>
 @include('admin.script')
-
 </html>
