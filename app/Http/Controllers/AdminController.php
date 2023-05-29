@@ -105,20 +105,20 @@ class AdminController extends Controller
     }
     public function update_confirm_product(Request $request, $id)
     {
-        request()->validate([
+        // request()->validate([
 
-            'image' => ['required'],
+        //     'image' => ['required'],
 
-        ], [
-            'title' => 'Title cannot be empty',
-            'description' => 'Description cannot be empty',
-            'price' => 'Price cannot be empty',
-            'quantity' => 'quantity cannot be empty',
-            'discount_price' => 'Discount Price cannot be empty',
-            'category' => 'Category Price cannot be empty',
-            'image' => 'Image Price cannot be empty',
+        // ], [
+        //     'title' => 'Title cannot be empty',
+        //     'description' => 'Description cannot be empty',
+        //     'price' => 'Price cannot be empty',
+        //     'quantity' => 'quantity cannot be empty',
+        //     'discount_price' => 'Discount Price cannot be empty',
+        //     'category' => 'Category Price cannot be empty',
+        //     'image' => 'Image Price cannot be empty',
 
-        ]);
+        // ]);
 
         $product = Product::find($id);
         $product->title = $request->title;
@@ -130,12 +130,15 @@ class AdminController extends Controller
 
         // Upload Image
         $image = $request->image;
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('product', $imagename);
-        $product->image = $imagename;
+        if ($image) {
+
+
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('product', $imagename);
+            $product->image = $imagename;
+        }
 
         $product->save();
         return redirect()->back();
-
     }
 }

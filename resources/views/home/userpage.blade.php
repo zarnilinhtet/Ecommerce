@@ -33,17 +33,17 @@
       <!-- why section -->
       @include('home.why')
       <!-- end why section -->
-      
+
       <!-- arrival section -->
-      @include('home.new_arrive')
+      {{-- @include('home.new_arrive') --}}
       <!-- end arrival section -->
-      
+
       <!-- product section -->
       @include('home.product')
       <!-- end product section -->
 
       <!-- subscribe section -->
-      @include('home.subcribe')
+      {{-- @include('home.subcribe') --}}
       <!-- end subscribe section -->
       <!-- client section -->
      @include('home.customer')
@@ -53,9 +53,9 @@
       <!-- footer end -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
-         
+
             Distributed By <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-         
+
          </p>
       </div>
       <!-- jQery -->

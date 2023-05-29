@@ -17,7 +17,7 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item menu-items">
+        {{-- <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                     <i class="mdi mdi-laptop"></i>
@@ -32,15 +32,30 @@
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/show_product') }}">Show Product</a>
                     </li>
 
+        </li> --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('/view_product') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Add Products</span>
+            </a>
         </li>
-
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('/show_product') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">View Products</span>
+            </a>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('view_category') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Category</span>
+            </a>
+        </li>
     </ul>
-    <li class="nav-item menu-items">
-        <a class="nav-link" href="{{ url('view_category') }}">
-            <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-            </span>
-            <span class="menu-title">Category</span>
-        </a>
-    </li>
 </nav>
